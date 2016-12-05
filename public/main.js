@@ -46,8 +46,6 @@ $(document).ready(function () {
     });
 });
 
-
-
 socket.on('select', function (data) {
     var $target = $('div[data-x = ' + data.x + '][data-y = ' + data.y + ']');
     $target.removeClass('enable');
@@ -61,7 +59,7 @@ socket.on('done', function (data) {
 });
 
 $('form').submit(function () {
-    //chat-1 서버로 이벤트 전송
+    //chat-1 서버로 'chat message 이벤트' 전송
     var msgs = $('#m').val();
     socket.emit('chat message', {
         msg: msgs,
@@ -71,7 +69,7 @@ $('form').submit(function () {
     return false;
 });
 
-//chat-4 서버로부터 받은 이벤트에 대한 처리
+//chat-4 서버로부터 받은 'chat message 이벤트'에 대한 처리
 socket.on('chat message', function (chat) {
     $('#messages').append($('<b>').text(chat.from));
     $('#messages').append($('<li>').text(chat.msg));
