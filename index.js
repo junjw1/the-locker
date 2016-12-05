@@ -25,18 +25,6 @@ var ChatSchema = mongoose.Schema({
 // 채팅 스키마로부터 모델 만들기
 var Chat = mongoose.model('Chat', ChatSchema);
 
-//??? allow CORS
-app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
-  if (req.method == 'OPTIONS') {
-    res.status(200).end();
-  } else {
-    next();
-  }
-});
-
 //채팅 로그 기록 보기
 app.get('/log', function(req, res) {
   //DB에 저장된 데이터 불러오기
